@@ -1,0 +1,53 @@
+import random
+
+
+myMoney = 100
+houseMoney = 1000
+option = -1
+while  myMoney > 0 and houseMoney > 0 and option != 0:
+    
+    betAmount = int(input("Enter a bet amount. \n"))
+    
+    die1 = random.randint(1,6)
+    die2 = random.randint(1,6)
+    sumOfDice = die1 + die2
+    
+    
+    
+    print("The sum of the dice is ")
+    print(sumOfDice)
+    
+    if sumOfDice == 7 or sumOfDice == 11:
+        print("You have won!")
+        print("You now have ", myMoney+(betAmount))
+        myMoney = myMoney+(betAmount)
+
+    elif sumOfDice ==2 or sumOfDice == 3 or sumOfDice ==12:
+        print("you have lost :(")
+        print("You now have ", myMoney-(betAmount))
+        myMoney = myMoney-(betAmount)
+
+    else:
+        playerPoint = sumOfDice 
+        print("Player Point is:")
+        print(playerPoint)
+        sumOfDice = 0;
+        while(sumOfDice != playerPoint and sumOfDice != 7):
+            die1 = random.randint(1,6)
+            die2 = random.randint(1,6)
+            sumOfDice = die1 + die2
+        if sumOfDice == playerPoint:
+            print("You have won! The sum of the dice is equal to the player point :D")
+            print("You now have ", myMoney+(betAmount))
+            myMoney = myMoney+(betAmount)
+        else: 
+            print("You have lost :( you rolled a 7")
+            print("You now have ", myMoney-(betAmount))
+            myMoney = myMoney-(betAmount)
+
+    option = int(input("To continue press 1. To exit press 0 \n"))
+    
+if myMoney <= 0: print("You have no more money! You cant play anymore")
+elif houseMoney <= 0: print("You took all the houses money! They cant play anymore")
+else: 
+    print("You ended up with" ,myMoney, "dollars")
