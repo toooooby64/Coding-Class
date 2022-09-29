@@ -24,3 +24,11 @@ class Enemy(Character):
         Character.__init__(self)
         self.name = 'a goblin'
         self.health = randint(1,player.health)
+    
+class Player(Character):
+    def __init__(self):
+        Character.__init__(self)
+        self.state = 'normal'
+        self.health = 10
+        self.health_Max = 10
+        
