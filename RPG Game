@@ -1,3 +1,5 @@
+
+
 def main():
     pass
 
@@ -31,4 +33,22 @@ class Player(Character):
         self.state = 'normal'
         self.health = 10
         self.health_Max = 10
+    
+    def quit(self):
+        print("%s can't find the way back home, and dies of starvation. \nR.I.P") % self.name
+        self.health = 0
+        
+    def help(self): print(Commands.keys())
+        
+    def status(self): print("%s's health: %d / %d ") % (self.name, self.health, self.health_Max)
+    
+    def rest(self):
+        if self.state != 'normal': print("%s can't rest now") % self.name; self.enemy_attacks()
+        
+        else:
+            print("%s rests.") % self.name
+            if randint(0,1):
+                self.enemy = Enemy(self)
+                print()
+        
         
