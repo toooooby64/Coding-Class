@@ -49,6 +49,28 @@ class Player(Character):
             print("%s rests.") % self.name
             if randint(0,1):
                 self.enemy = Enemy(self)
-                print()
+                print("%s is rudely awakened by %s") % (self.name,self.enemy.name)
+                self.state = 'fight'
+                self.enemy_attacks()
+            else:
+                if self.state < self.health_Max:
+                    self.health = self.health + 1
+                else: print("%s slept too much") % self.name
         
+    def explore(self):
+        if self.state != 'normal':
+            print("%s is too busy right now!") % self.name
+            self.enemy_attacks()
+            
+        else:
+            print("%s explores a twisty passage.") % self.name
+            if randint(0,1):
+                self.enemy = Enemy(self)
+                print("%s excounters %s") % (self.name, self.enemy.name)
+                self.state = 'fight'
+            else:
+                if randint(0,1) : self.tired()
+                
+    def flee(self): 
+        if self.state != 'fight': print("%s runs in circles for a while") % self.name
         
