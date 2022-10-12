@@ -1,3 +1,4 @@
+
 def main():
     pass
 
@@ -73,3 +74,38 @@ class Player(Character):
                 
     def flee(self): 
         if self.state != 'fight': print("%s runs in circles for a while" % self.name) 
+        else:
+            if randint(1,self.health+5) > randint(1,enemy.health):
+                print("%s flees from %s" % (self.name, self.enemy.name))
+                self.enemy = None
+                self.state = 'normal'
+            else: 
+                print("%s couldn't from %s" % (self.name, self.enemy.name))
+                self.enemy_attacks()
+    def attack(self):
+        if self.state != 'fight':
+            print ("%s swats the air, without notable results." % self.name)
+            self.tired()
+        else:
+            if self.do_Damage(self.enemy):
+                print("%s executes %s!" % (self.name, self.enemy.name)
+                self.enemy = None
+                self.state = 'normal'
+                if randint(0,self.health) < 10:
+                    self.health = self.health + 1
+                    self.health_Max = self.health_Max + 1
+                    print("%s feels stronger!" % self.name)
+            else: self.enemy_attacks()
+        
+    def enemy_attacks(self):
+        if self.enemy.do_Damage(self):
+            print("%s was slaughtered by %s!!! \n R.I.P" % (self.name, self.enemy.name))
+
+Commands = {
+    'quit': Player.quit,
+    'help': Player.help,
+    'status': Player.status,
+    'rest': Player.explore,
+    'flee': Player.flee,
+    'attack': Player.attack
+}  
