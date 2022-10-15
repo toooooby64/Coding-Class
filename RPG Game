@@ -33,6 +33,7 @@ class Player(Character):
         self.state = 'normal'
         self.health = 10
         self.health_Max = 10
+        self.tired
     
     def quit(self):
         print("%s can't find the way back home, and dies of starvation. \nR.I.P" % self.name) 
@@ -76,7 +77,7 @@ class Player(Character):
     def flee(self): 
         if self.state != 'fight': print("%s runs in circles for a while" % self.name) 
         else:
-            if random.randint(1,self.health+5) > random.randint(1,enemy.health):
+            if random.randint(1,self.health+5) > random.randint(1,self.enemy.health):
                 print("%s flees from %s" % (self.name, self.enemy.name))
                 self.enemy = None
                 self.state = 'normal'
@@ -97,6 +98,9 @@ class Player(Character):
                     self.health_Max = self.health_Max + 1
                     print("%s feels stronger!" % self.name)
             else: self.enemy_attacks()
+    
+    def tired(self):
+        self.state = 'tired'
         
     def enemy_attacks(self):
         if self.enemy.do_Damage(self):
@@ -129,6 +133,8 @@ while (p.health > 0):
                 break
         if not commandFound:
             print("%s doesn't understand the suggestion." % p.name)
+        
+        
         
         
         
