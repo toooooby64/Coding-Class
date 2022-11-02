@@ -56,14 +56,28 @@ class TicTacToe:
                 break
         if win:
             return win
-                
-                
-
-
-test = TicTacToe()
-
-test.create_board()
-test.show_board()
-
-
+        
+        win = True
+        for i in range(n):
+            if self.board[i][n-1-i] != player:
+                win = False
+                break
+        if win:
+            return win
+        return False
+        
+        for row in self.board:
+            for item in row:
+                if item == '-':
+                    return False
+        return True
+    
+    def swap_player_turn(self, player):
+        return 'X' if player == '0' else '0'
+        
+    def start(self):
+        self.create_board()
+        player = 'X' if self.get_random_first_player() == '1' else '0'
+        while True:
+            print(f"Player {player} turn")
 
