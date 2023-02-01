@@ -1,3 +1,5 @@
+import random
+
 def print_scaffold(guesses, wd): # prints the scaffold
 		if (guesses == 0):
 				print ("_________")
@@ -60,8 +62,24 @@ def print_scaffold(guesses, wd): # prints the scaffold
 				print ("\n")
 				print ("\nYOU LOSE! TRY AGAIN!")
 				print ("\nWould you like to play again, type 1 for yes or 2 for no?")
-				again = str(raw_input("> "))
+				again = str(input("> "))
 				again = again.lower()
 				if again == "1":
 				  hangMan()
 				return
+
+def selectWord():
+  file = open("words.txt")
+  words = file.readlines()
+  myword = random.choice(words)
+  wordlength = len(myword)
+  while wordlength < 4:
+    myword = str(myword).strip('[]')
+    myword = str(myword).strip("''")
+    myword = str(myword).strip("\n")
+    myword = str(myword).strip("\r")
+  myword.lower()
+  print(str(myword))
+  return myword
+
+selectWord()
