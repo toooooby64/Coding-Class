@@ -73,13 +73,31 @@ def selectWord():
   words = file.readlines()
   myword = random.choice(words)
   wordlength = len(myword)
-  while wordlength < 4:
-    myword = str(myword).strip('[]')
-    myword = str(myword).strip("''")
-    myword = str(myword).strip("\n")
-    myword = str(myword).strip("\r")
+  myword = str(myword).strip('[]')
+  myword = str(myword).strip("''")
+  myword = str(myword).strip("\n")
+  myword = str(myword).strip("\r")
   myword.lower()
-  print(str(myword))
   return myword
 
-selectWord()
+def hangMan():
+  guesses = 0
+  word = selectWord()
+  word_list = list(word)
+  blank = "_"*len(word)
+  blanks_list = list(blank)
+  new_blanks_list = list(blank)
+  guess_list = []
+
+  print("Let's play hangman! \n")
+  print_scaffold(guesses,word)
+  print("\n")
+  print("" + ' '.join(blanks_list))
+  print("\n")
+  print("Guess a letter.\n")
+
+  while guesses < 6:
+    guess = str(input("Enter a letter "))
+    
+  
+hangMan()
