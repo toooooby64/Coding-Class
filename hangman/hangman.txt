@@ -98,6 +98,24 @@ def hangMan():
 
   while guesses < 6:
     guess = str(input("Enter a letter "))
-    
+    guess = guess.lower()
+
+    if len(guess) > 1:
+      print("Stop cheating! Enter one letter at a time")
+    elif guess == "":
+      print("Don't you want to play? Enter on letter.")
+    elif guess in guess_list:
+      print("You already guessed that letter. Here is what you've guessed:")
+      print(' '.join(guess_list))
+    else:
+      guess_list.append(guess)
+      i = 0
+      while i < len(word):
+        if guess == word[i]:
+          new_blanks_list[i] = word_list[i]
+        i = i + 1
+      if new_blanks_list == blanks_list:
+        print("Your letter isn't here.")
+        guesses = guesses + 1
   
 hangMan()
