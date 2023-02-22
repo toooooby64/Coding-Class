@@ -1,72 +1,74 @@
 import random
 
-def print_scaffold(guesses, wd): # prints the scaffold
-		if (guesses == 0):
-				print ("_________")
-				print ("|	 |")
-				print ("|")
-				print ("|")
-				print ("|")
-				print ("|")
-				print ("|________")
-		elif (guesses == 1):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|")
-				print ("|")
-				print ("|")
-				print ("|________")
-		elif (guesses == 2):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|	 |")
-				print ("|	 |")
-				print ("|")
-				print ("|________")
-		elif (guesses == 3):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|	\|")
-				print ("|	 |")
-				print ("|")
-				print ("|________")
-		elif (guesses == 4):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|	\|/")
-				print ("|	 |")
-				print ("|")
-				print ("|________")
-		elif (guesses == 5):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|	\|/")
-				print ("|	 |")
-				print ("|	/ ")
-				print ("|________")
-		elif (guesses == 6):
-				print ("_________")
-				print ("|	 |")
-				print ("|	 O")
-				print ("|	\|/")
-				print ("|	 |")
-				print ("|	/ \ ")
-				print ("|________")
-				print ("\n")
-				print ("The word was %s." %wd)
-				print ("\n")
-				print ("\nYOU LOSE! TRY AGAIN!")
-				print ("\nWould you like to play again, type 1 for yes or 2 for no?")
-				again = str(input("> "))
-				again = again.lower()
-				if again == "1":
-				  hangMan()
-				return
+
+def print_scaffold(guesses, wd):  # prints the scaffold
+  if (guesses == 0):
+    print("_________")
+    print("|	 |")
+    print("|")
+    print("|")
+    print("|")
+    print("|")
+    print("|________")
+  elif (guesses == 1):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|")
+    print("|")
+    print("|")
+    print("|________")
+  elif (guesses == 2):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|	 |")
+    print("|	 |")
+    print("|")
+    print("|________")
+  elif (guesses == 3):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|	\|")
+    print("|	 |")
+    print("|")
+    print("|________")
+  elif (guesses == 4):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|	\|/")
+    print("|	 |")
+    print("|")
+    print("|________")
+  elif (guesses == 5):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|	\|/")
+    print("|	 |")
+    print("|	/ ")
+    print("|________")
+  elif (guesses == 6):
+    print("_________")
+    print("|	 |")
+    print("|	 O")
+    print("|	\|/")
+    print("|	 |")
+    print("|	/ \ ")
+    print("|________")
+    print("\n")
+    print("The word was %s." % wd)
+    print("\n")
+    print("\nYOU LOSE! TRY AGAIN!")
+    print("\nWould you like to play again, type 1 for yes or 2 for no?")
+    again = str(input("> "))
+    again = again.lower()
+    if again == "1":
+      hangMan()
+    return
+
 
 def selectWord():
   file = open("words.txt")
@@ -80,17 +82,18 @@ def selectWord():
   myword.lower()
   return myword
 
+
 def hangMan():
   guesses = 0
   word = selectWord()
   word_list = list(word)
-  blank = "_"*len(word)
+  blank = "_" * len(word)
   blanks_list = list(blank)
   new_blanks_list = list(blank)
   guess_list = []
 
   print("Let's play hangman! \n")
-  print_scaffold(guesses,word)
+  print_scaffold(guesses, word)
   print("\n")
   print("" + ' '.join(blanks_list))
   print("\n")
@@ -117,5 +120,25 @@ def hangMan():
       if new_blanks_list == blanks_list:
         print("Your letter isn't here.")
         guesses = guesses + 1
-  
+        print_scaffold(guesses, word)
+
+        if guesses < 6:
+          print("Guess again!")
+          print(' '.join(blanks_list))
+
+      elif word_list != blanks_list:
+        blanks_list = new_blanks_list[:]
+        print(' '.join(blanks_list))
+
+        if word_list == blanks_list:
+          print("You WIN!! Congrats \n")
+          print("Would you like to play again?")
+          print("Type 1 for yes or 2 for no")
+
+          again = str(input())
+          if again == "1":
+            hangMan()
+          quit()
+        else:
+          print("Great guess! Guess another!")
 hangMan()
