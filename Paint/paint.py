@@ -117,5 +117,23 @@ while not exit_game:
                 pencolour = violet
                 drawrectangle()
                 buttonselect = (56, 192, 34, 32)
-
-pygame.display.update()
+            #Eraser
+            elif 13 < mousepos[0] < 54 and 247 < mousepos[1] < 285:
+                pencolour = white
+                drawrectangle()
+                pygame.mouse.set_cursor(*pygame.cursors.diamond)
+            #Pencil
+            elif 59 < mousepos[0] < 97 and 247 < mousepos[1] < 288:
+                pencolour = black
+                drawrectangle()
+                pygame.mouse.set_cursor(*pygame.cursors.broken_x)
+                buttonselect = (22, 81, 30, 34)
+                
+            elif 15 < mousepos[0] < 96 and 363 < mousepos[1] < 400:                
+                pygame.gfxdraw.box(drawingwindow, clearrect, white)
+ 
+        pygame.gfxdraw.rectangle(drawingwindow, buttonselect, white)
+        pygame.display.update()
+                
+            
+pygame.quit()
