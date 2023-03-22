@@ -15,7 +15,7 @@ pink = (255, 192, 203)
 orange = (255, 165, 0)
 yellow = (255, 255, 0)
 violet = (177, 3, 252)
-green = (38,245,45)
+green = (38, 245, 45)
 
 penColor = black
 
@@ -57,7 +57,21 @@ pygame.mouse.set_cursor(*pygame.cursors.broken_x)
 exit_game = False
 
 while not exit_game:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      exit_game = True
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit_game = True
+
+        t = pygame.mouse.get_pressed()
+        if t[0] == 1:
+            mosusePos = pygame.mouse.get_pos()
+            if 122 < mosusePos[0] < 678 and 21 < mosusePos[1] < 480:
+                pygame.gfxdraw.filled_ellipse(drawingWindow, mosusePos[0],
+                                              mosusePos[1], 4, 4, penColor)
+            elif 22 < mosusePos[0] < 52 and 81 < mosusePos[1] < 115:
+                penColor = black
+                drawRectangle()
+                buttonSelect = (22, 81, 30, 34)
+
+            
+
 pygame.display.update()
