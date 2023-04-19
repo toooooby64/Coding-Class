@@ -14,13 +14,16 @@ def is_valid_location(board, selection):
 def get_next_open_row(board,selection):
   for r in range(ROW_COUNT):
     if board[r][selection] == 0:
-      return r 
+      return r
+
 def winning_move(board,piece):
   for c in range(COL_COUNT):
     for r in range(ROW_COUNT):
       if board[r][c] == piece and board[r][c+1] == piece and board[r][c+2] == piece and board[r][c+3] == piece:
         return True
-    
+        
+
+
 def print_board(board):
   print(numpy.flip(board,0))
   
@@ -37,6 +40,7 @@ while not game_over:
       drop_piece(board,row,selection,1)
       if winning_move(board,1):
         print("PLAYER 1 WINS!!! :D")
+        game_over = True
 
   else:
     selection = int(input("Player 2 make your selection (0-6): "))
@@ -47,6 +51,5 @@ while not game_over:
 
   turn += 1
   turn = turn % 2
-  
 
   
