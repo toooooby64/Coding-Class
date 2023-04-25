@@ -1,4 +1,5 @@
 import numpy
+import pygame
 ROW_COUNT = 6
 COL_COUNT = 7
 def create_board():
@@ -47,6 +48,14 @@ board =  create_board()
 print(board)
 game_over = False
 turn = 0
+
+pygame.init()
+SQUARESIZE = 100
+witdh  =  COL_COUNT = SQUARESIZE
+height =   ROW_COUNT = SQUARESIZE
+size = (witdh,height)
+screen = pygame.display.set_mode(size)
+
 while not game_over:
   #Ask for player 1 input
   if turn == 0:
@@ -63,6 +72,9 @@ while not game_over:
     if is_valid_location(board,selection):
       row = get_next_open_row(board,selection)
       drop_piece(board,row,selection,2)
+      if winning_move(board,2):
+        print("PLAYER 2 WINS!!! :D")
+        game_over = True
   print_board(board)
 
   turn += 1
