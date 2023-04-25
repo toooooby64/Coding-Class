@@ -21,6 +21,22 @@ def winning_move(board,piece):
     for r in range(ROW_COUNT):
       if board[r][c] == piece and board[r][c+1] == piece and board[r][c+2] == piece and board[r][c+3] == piece:
         return True
+
+  for c in range(COL_COUNT):
+    for r in range(ROW_COUNT):
+      if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c] == piece and board[r+3][c] == piece:
+        return True
+
+  for c in range(COL_COUNT):
+    for r in range (ROW_COUNT):
+      if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
+        return True
+
+  for c in range(COL_COUNT):
+    for r in range (ROW_COUNT):
+      if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] and board[r-3][c+3] == piece:
+        return True
+  
         
 
 
@@ -51,5 +67,4 @@ while not game_over:
 
   turn += 1
   turn = turn % 2
-
   
