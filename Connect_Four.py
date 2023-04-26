@@ -57,6 +57,12 @@ size = (witdh,height)
 screen = pygame.display.set_mode(size)
 
 while not game_over:
+
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT():
+      sys.exit()
+    
+  
   #Ask for player 1 input
   if turn == 0:
     selection = int(input("Player 1 make your selection (0-6):"))
@@ -80,3 +86,12 @@ while not game_over:
   turn += 1
   turn = turn % 2
   
+  
+  
+
+
+
+
+    
+  
+
